@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>简单实现promise</title>
+</head>
+<body>
+<h2>简单实现promise，点击按钮3秒后看控制台输出</h2>
+<button id="easy">简单Promise</button>
+<script src="./src/easy.js"></script>
+<script>
+  const easyButton = document.querySelector('#easy');
+  easyButton.addEventListener('click', () => {
+    const easyPromise = new EasyPromise(function (resolve, reject) {
+      setTimeout(() => {
+        resolve('简单的promise');
+        reject('123')
+      }, 3000)
+    });
+    easyPromise.then((data) => {
+      console.log(data)
+    })
+  })
+</script>
+</body>
+</html>
