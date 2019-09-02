@@ -10,18 +10,44 @@
 <body>
 <h2>简单实现promise，点击按钮3秒后看控制台输出</h2>
 <button id="easy">简单Promise</button>
+<h2>普通实现promise，点击按钮3秒后看控制台输出</h2>
+<button id="normal">普通Promise</button>
+
 <script src="./src/easy.js"></script>
+<script src="./src/normal.js"></script>
 <script>
   const easyButton = document.querySelector('#easy');
   easyButton.addEventListener('click', () => {
     const easyPromise = new EasyPromise(function (resolve, reject) {
-      setTimeout(() => {
-        resolve('简单的promise');
-        reject('123')
-      }, 3000)
+      try{
+        setTimeout(() => {
+          resolve('简单的promise');
+        }, 3000)
+      }catch(err){
+        reject(err)
+      }
     });
     easyPromise.then((data) => {
       console.log(data)
+    })
+  });
+
+  const normalButton = document.querySelector('#normal');
+  normalButton.addEventListener('click', () => {
+    const normalPromise = new NormalPromise(function (resolve, reject) {
+      try{
+        setTimeout(() => {
+          resolve('普通的promise');
+        }, 3000)
+      }catch(err){
+        reject(err)
+      }
+    });
+    normalPromise.then((data) => {
+      console.log(data);
+      return 123
+    }).then((d) => {
+      console.log(d)
     })
   })
 </script>
